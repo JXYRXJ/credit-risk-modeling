@@ -1,0 +1,164 @@
+================================================================================
+COMPREHENSIVE CREDIT RISK MODEL EVALUATION
+================================================================================
+Run Time: 2025-09-24 17:13:03
+================================================================================
+Loading datasets...
+Training set: (26064, 69)
+Test set: (6517, 69)
+Class distribution: {np.int64(0): np.int64(25473), np.int64(1): np.int64(7108)}
+Scale pos weight for XGBoost: 0.28
+
+==================================================
+TRAINING MODELS
+==================================================
+Training XGBoost...
+Training Random Forest...
+
+============================================================
+COMPREHENSIVE MODEL EVALUATION
+============================================================
+
+XGBoost - Detailed Performance Metrics:
+--------------------------------------------------
+Metric                    Value      Description
+--------------------------------------------------
+Accuracy                  0.9121     Overall correctness
+Balanced Accuracy         0.8784     Avg of sensitivity & specificity
+Precision (PPV)           0.7870     TP / (TP + FP)
+Recall (Sensitivity)      0.8186     TP / (TP + FN)
+Specificity (TNR)         0.9382     TN / (TN + FP)
+F1-Score                  0.8025     Harmonic mean of precision & recall
+NPV                       0.9488     TN / (TN + FN)
+False Positive Rate       0.0618     FP / (FP + TN)
+False Negative Rate       0.1814     FN / (FN + TP)
+ROC-AUC                   0.9513     Area under ROC curve
+PR-AUC                    0.9074     Area under PR curve
+Matthews Corr Coef        0.7462     Correlation between observed & predicted
+Cohen Kappa               0.7460     Agreement correcting for chance
+Gini Coefficient          0.9026     2*AUC - 1 (discriminatory power)
+Log Loss                  0.2362     Logarithmic loss (lower better)
+
+Confusion Matrix:
+                 Predicted
+              No Default  Default
+Actual No      4780        315
+       Yes      258       1164
+
+Random Forest - Detailed Performance Metrics:
+--------------------------------------------------
+Metric                    Value      Description
+--------------------------------------------------
+Accuracy                  0.9050     Overall correctness
+Balanced Accuracy         0.8490     Avg of sensitivity & specificity
+Precision (PPV)           0.8021     TP / (TP + FP)
+Recall (Sensitivity)      0.7496     TP / (TP + FN)
+Specificity (TNR)         0.9484     TN / (TN + FP)
+F1-Score                  0.7750     Harmonic mean of precision & recall
+NPV                       0.9314     TN / (TN + FN)
+False Positive Rate       0.0516     FP / (FP + TN)
+False Negative Rate       0.2504     FN / (FN + TP)
+ROC-AUC                   0.9225     Area under ROC curve
+PR-AUC                    0.8702     Area under PR curve
+Matthews Corr Coef        0.7155     Correlation between observed & predicted
+Cohen Kappa               0.7149     Agreement correcting for chance
+Gini Coefficient          0.8451     2*AUC - 1 (discriminatory power)
+Log Loss                  0.2955     Logarithmic loss (lower better)
+
+Confusion Matrix:
+                 Predicted
+              No Default  Default
+Actual No      4832        263
+       Yes      356       1066
+
+======================================================================
+COMPREHENSIVE MODEL COMPARISON
+======================================================================
+           Metric  XGBoost  Random Forest  Difference (XGB-RF)
+         accuracy   0.9121         0.9050               0.0071
+balanced_accuracy   0.8784         0.8490               0.0294
+        precision   0.7870         0.8021              -0.0151
+           recall   0.8186         0.7496               0.0689
+      specificity   0.9382         0.9484              -0.0102
+         f1_score   0.8025         0.7750               0.0275
+              npv   0.9488         0.9314               0.0174
+          roc_auc   0.9513         0.9225               0.0288
+           pr_auc   0.9074         0.8702               0.0372
+              mcc   0.7462         0.7155               0.0307
+            kappa   0.7460         0.7149               0.0311
+             gini   0.9026         0.8451               0.0575
+
+==================================================
+MODEL RANKING BY KEY METRICS
+==================================================
+ROC_AUC              Winner: XGBoost         (XGB: 0.9513, RF: 0.9225)
+PR_AUC               Winner: XGBoost         (XGB: 0.9074, RF: 0.8702)
+F1_SCORE             Winner: XGBoost         (XGB: 0.8025, RF: 0.7750)
+MCC                  Winner: XGBoost         (XGB: 0.7462, RF: 0.7155)
+BALANCED_ACCURACY    Winner: XGBoost         (XGB: 0.8784, RF: 0.8490)
+
+OVERALL BEST MODEL: XGBoost
+Combined ROC-AUC + PR-AUC Score:
+  XGBoost: 0.9294
+  Random Forest: 0.8964
+
+==================================================
+FEATURE IMPORTANCE (XGBoost)
+==================================================
+Top 15 Features:
+ 1. loan_grade_ordinal                  0.1803
+ 2. loan_percent_income                 0.0711
+ 3. person_home_ownership_RENT          0.0590
+ 4. income_grade_interaction            0.0468
+ 5. person_home_ownership_OWN           0.0448
+ 6. income_bracket_low                  0.0404
+ 7. int_rate_group_low                  0.0399
+ 8. loan_intent_VENTURE                 0.0330
+ 9. person_home_ownership_MORTGAGE      0.0276
+10. loan_intent_HOMEIMPROVEMENT         0.0269
+11. log_income                          0.0266
+12. loan_intent_DEBTCONSOLIDATION       0.0233
+13. loan_intent_MEDICAL                 0.0222
+14. person_income                       0.0217
+15. affordability_ratio                 0.0212
+
+============================================================
+CREDIT RISK SPECIFIC ANALYSIS
+============================================================
+Risk Score Distribution (XGBoost probabilities):
+Risk Category   Count    Percentage   Avg Default Rate
+-------------------------------------------------------
+Very Low Risk   2380     36.5        % 0.9       %
+Low Risk        1847     28.3        % 6.2       %
+Medium Risk     811      12.4        % 15.2      %
+High Risk       352      5.4         % 29.8      %
+Very High Risk  1127     17.3        % 94.0      %
+
+Model Calibration Analysis:
+Expected defaults (based on probabilities): 2023
+Actual defaults: 1422
+Calibration ratio: 0.703
+
+Business Impact Metrics (XGBoost):
+  Total loan applications: 6,517
+  Actual defaults: 1,422 (21.8%)
+  Correctly identified defaults: 1,164 (81.9%)
+  Missed defaults: 258 (18.1%)
+  False alarms: 315 (6.2%)
+
+🎉 Comprehensive analysis complete!
+🏆 Best performing model: XGBoost
+📈 Key strengths: High ROC-AUC (0.9513) and PR-AUC (0.9074)
+
+================================================================================
+END OF COMPREHENSIVE ANALYSIS
+================================================================================
+
+
+
+
+
+
+
+
+

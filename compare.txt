@@ -1,0 +1,16 @@
+Performance Comparison:
+              accuracy  balanced_accuracy  precision  recall  specificity  \
+XGBoost         0.8935             0.8815     0.7119  0.8601       0.9028   
+LightGBM        0.8900             0.8774     0.7041  0.8551       0.8997   
+CatBoost        0.8989             0.8770     0.7353  0.8383       0.9158   
+RandomForest    0.9084             0.8443     0.8292  0.7307       0.9580   
+Ensemble        0.9124             0.8814     0.7839  0.8263       0.9364   
+
+              f1_score  roc_auc  pr_auc     mcc    gini  log_loss  
+XGBoost         0.7790   0.9514  0.9086  0.7152  0.9027    0.2477  
+LightGBM        0.7723   0.9505  0.9087  0.7064  0.9010    0.2526  
+CatBoost        0.7834   0.9519  0.9106  0.7205  0.9039    0.2365  
+RandomForest    0.7768   0.9220  0.8666  0.7218  0.8439    0.2889  
+Ensemble        0.8045   0.9517  0.9094  0.7485  0.9033    0.2470  
+
+Best Overall Model: Ensemble

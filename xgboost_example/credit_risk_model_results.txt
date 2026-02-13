@@ -1,0 +1,229 @@
+================================================================================
+COMPREHENSIVE CREDIT RISK MODEL EVALUATION WITH OVERFITTING ANALYSIS
+================================================================================
+Run Time: 2025-09-24 18:20:59
+================================================================================
+Loading datasets...
+Training set: (26064, 69)
+Test set: (6517, 69)
+Class distribution: {np.int64(0): np.int64(25473), np.int64(1): np.int64(7108)}
+Scale pos weight for XGBoost: 0.28
+
+==================================================
+TRAINING MODELS
+==================================================
+Training XGBoost...
+Training Random Forest...
+
+============================================================
+OVERFITTING ANALYSIS
+============================================================
+
+XGBoost Overfitting Analysis:
+----------------------------------------
+Training Metrics:
+  Accuracy:  0.9421
+  ROC-AUC:   0.9870
+  Recall:    0.9253
+  Precision: 0.8290
+  F1-Score:  0.8745
+
+Test Metrics:
+  Accuracy:  0.9050
+  ROC-AUC:   0.9507
+  Recall:    0.8270
+  Precision: 0.7592
+  F1-Score:  0.7917
+
+Overfitting Analysis:
+  Accuracy Gap:  3.93%
+  ROC-AUC Gap:   3.68%
+  Recall Gap:    10.62%
+  Precision Gap: 8.42%
+  F1-Score Gap:  9.47%
+  Average Gap:   7.23%
+  Assessment:    🟠 MODERATE
+
+Random Forest Overfitting Analysis:
+----------------------------------------
+Training Metrics:
+  Accuracy:  0.9189
+  ROC-AUC:   0.9505
+  Recall:    0.7832
+  Precision: 0.8348
+  F1-Score:  0.8082
+
+Test Metrics:
+  Accuracy:  0.9050
+  ROC-AUC:   0.9225
+  Recall:    0.7496
+  Precision: 0.8021
+  F1-Score:  0.7750
+
+Overfitting Analysis:
+  Accuracy Gap:  1.51%
+  ROC-AUC Gap:   2.94%
+  Recall Gap:    4.28%
+  Precision Gap: 3.92%
+  F1-Score Gap:  4.11%
+  Average Gap:   3.35%
+  Assessment:    🟡 ACCEPTABLE
+
+======================================================================
+OVERFITTING COMPARISON TABLE
+======================================================================
+         Metric  XGBoost  Random Forest
+ Accuracy Gap %     3.93           1.51
+  ROC-AUC Gap %     3.68           2.94
+   Recall Gap %    10.62           4.28
+Precision Gap %     8.42           3.92
+ F1-Score Gap %     9.47           4.11
+  Average Gap %     7.23           3.35
+
+🏆 Less Overfitted Model: Random Forest
+   XGBoost Average Gap: 7.23%
+   Random Forest Average Gap: 3.35%
+
+============================================================
+COMPREHENSIVE MODEL EVALUATION
+============================================================
+
+Threshold Tuning (XGBoost):
+Threshold: 0.10 | Recall: 0.9880 | Precision: 0.3222 | F1: 0.4860
+Threshold: 0.15 | Recall: 0.9726 | Precision: 0.3701 | F1: 0.5362
+Threshold: 0.20 | Recall: 0.9578 | Precision: 0.4215 | F1: 0.5854
+Threshold: 0.25 | Recall: 0.9416 | Precision: 0.4791 | F1: 0.6350
+Threshold: 0.30 | Recall: 0.9163 | Precision: 0.5356 | F1: 0.6760
+Threshold: 0.35 | Recall: 0.8966 | Precision: 0.5955 | F1: 0.7157
+Threshold: 0.40 | Recall: 0.8734 | Precision: 0.6540 | F1: 0.7480
+Threshold: 0.45 | Recall: 0.8502 | Precision: 0.7054 | F1: 0.7710
+Threshold: 0.50 | Recall: 0.8270 | Precision: 0.7592 | F1: 0.7917
+Threshold: 0.55 | Recall: 0.8052 | Precision: 0.8121 | F1: 0.8086
+Threshold: 0.60 | Recall: 0.7862 | Precision: 0.8607 | F1: 0.8218
+Threshold: 0.65 | Recall: 0.7679 | Precision: 0.8973 | F1: 0.8276
+Threshold: 0.70 | Recall: 0.7489 | Precision: 0.9253 | F1: 0.8278
+Threshold: 0.75 | Recall: 0.7293 | Precision: 0.9505 | F1: 0.8253
+Threshold: 0.80 | Recall: 0.7194 | Precision: 0.9761 | F1: 0.8283
+Threshold: 0.85 | Recall: 0.7089 | Precision: 0.9882 | F1: 0.8256
+
+✅ Best Threshold: 0.45 | Recall: 0.8502
+
+XGBoost - Detailed Performance Metrics:
+--------------------------------------------------
+accuracy                  0.8898    
+balanced_accuracy         0.8755    
+precision                 0.7054    
+recall                    0.8502    
+specificity               0.9009    
+f1_score                  0.7710    
+npv                       0.9557    
+fpr                       0.0991    
+fnr                       0.1498    
+roc_auc                   0.9507    
+pr_auc                    0.9068    
+mcc                       0.7046    
+kappa                     0.6993    
+gini                      0.9013    
+log_loss                  0.2497    
+
+Confusion Matrix:
+                 Predicted
+              No Default  Default
+Actual No      4590        505
+       Yes      213       1209
+
+Random Forest - Detailed Performance Metrics:
+--------------------------------------------------
+accuracy                  0.9050    
+balanced_accuracy         0.8490    
+precision                 0.8021    
+recall                    0.7496    
+specificity               0.9484    
+f1_score                  0.7750    
+npv                       0.9314    
+fpr                       0.0516    
+fnr                       0.2504    
+roc_auc                   0.9225    
+pr_auc                    0.8702    
+mcc                       0.7155    
+kappa                     0.7149    
+gini                      0.8451    
+log_loss                  0.2955    
+
+Confusion Matrix:
+                 Predicted
+              No Default  Default
+Actual No      4832        263
+       Yes      356       1066
+
+======================================================================
+COMPREHENSIVE MODEL COMPARISON
+======================================================================
+           Metric  XGBoost  Random Forest  Difference (XGB-RF)
+         accuracy   0.8898         0.9050              -0.0152
+balanced_accuracy   0.8755         0.8490               0.0265
+        precision   0.7054         0.8021              -0.0967
+           recall   0.8502         0.7496               0.1006
+      specificity   0.9009         0.9484              -0.0475
+         f1_score   0.7710         0.7750              -0.0039
+              npv   0.9557         0.9314               0.0243
+          roc_auc   0.9507         0.9225               0.0281
+           pr_auc   0.9068         0.8702               0.0366
+              mcc   0.7046         0.7155              -0.0109
+            kappa   0.6993         0.7149              -0.0155
+             gini   0.9013         0.8451               0.0563
+
+==================================================
+MODEL RANKING BY KEY METRICS
+==================================================
+ROC_AUC              Winner: XGBoost         (XGB: 0.9507, RF: 0.9225)
+PR_AUC               Winner: XGBoost         (XGB: 0.9068, RF: 0.8702)
+F1_SCORE             Winner: Random Forest   (XGB: 0.7710, RF: 0.7750)
+MCC                  Winner: Random Forest   (XGB: 0.7046, RF: 0.7155)
+BALANCED_ACCURACY    Winner: XGBoost         (XGB: 0.8755, RF: 0.8490)
+
+OVERALL BEST MODEL: XGBoost
+Combined ROC-AUC + PR-AUC Score:
+  XGBoost: 0.9287
+  Random Forest: 0.8964
+
+==================================================
+FEATURE IMPORTANCE (XGBoost)
+==================================================
+Top 15 Features:
+ 1. loan_grade_ordinal                  0.1368
+ 2. loan_percent_income                 0.1080
+ 3. person_home_ownership_RENT          0.0773
+ 4. income_grade_interaction            0.0684
+ 5. person_home_ownership_OWN           0.0485
+ 6. loan_intent_VENTURE                 0.0475
+ 7. affordability_ratio                 0.0328
+ 8. loan_intent_HOMEIMPROVEMENT         0.0326
+ 9. loan_intent_MEDICAL                 0.0278
+10. person_income                       0.0265
+11. loan_intent_DEBTCONSOLIDATION       0.0264
+12. person_home_ownership_MORTGAGE      0.0227
+13. log_income                          0.0210
+14. person_home_ownership_OTHER         0.0141
+15. person_emp_length                   0.0134
+
+============================================================
+FINAL OVERFITTING ASSESSMENT
+============================================================
+Overfitting Summary:
+  XGBoost: 7.23% - 🟠 MODERATE (Some overfitting)
+  Random Forest: 3.35% - 🟡 ACCEPTABLE (Good generalization)
+
+📊 Overfitting Interpretation:
+  • 0-2%: Minimal overfitting - Production ready
+  • 2-5%: Acceptable overfitting - Monitor closely
+  • 5-10%: Moderate overfitting - Apply regularization
+  • 10%+: High overfitting - Significant intervention needed
+
+🎉 Analysis complete with overfitting assessment!
+🏆 Best performing model: XGBoost
+🔍 Less overfitted model: Random Forest
+
+================================================================================
+END OF COMPREHENSIVE ANALYSIS WITH OVERFITTING
+================================================================================

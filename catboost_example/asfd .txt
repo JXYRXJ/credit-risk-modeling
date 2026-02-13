@@ -1,0 +1,64 @@
+CATBOOST PERFORMANCE EVALUATION
+============================================================
+CatBoost - Comprehensive Performance Metrics:
+-------------------------------------------------------
+Metric                    Value      Description
+-------------------------------------------------------
+Accuracy                  0.9250     Overall correctness
+Balanced Accuracy         0.8793     Avg of sensitivity & specificity
+Precision (PPV)           0.8489     TP / (TP + FP)
+Recall (Sensitivity)      0.7982     TP / (TP + FN)
+Specificity (TNR)         0.9604     TN / (TN + FP)
+F1-Score                  0.8228     Harmonic mean of precision & recall
+NPV                       0.9446     TN / (TN + FN)
+False Positive Rate       0.0396     FP / (FP + TN)
+False Negative Rate       0.2018     FN / (FN + TP)
+ROC-AUC                   0.9511     Area under ROC curve
+PR-AUC                    0.9098     Area under PR curve
+Matthews Corr Coef        0.7758     Correlation coefficient
+Cohen Kappa               0.7752     Agreement correcting for chance
+Gini Coefficient          0.9023     2*AUC - 1
+Log Loss                  0.2223     Logarithmic loss (lower better)
+
+Confusion Matrix:
+                 Predicted
+              No Default  Default
+Actual No      4893        202
+       Yes      287       1135
+
+
+
+
+
+
+
+
+class_weights={0: 1, 1: 12},
+============================================================
+CATBOOST PERFORMANCE EVALUATION
+============================================================
+CatBoost - Comprehensive Performance Metrics:
+-------------------------------------------------------
+Metric                    Value      Description
+-------------------------------------------------------
+Accuracy                  0.8499     Overall correctness
+Balanced Accuracy         0.8655     Avg of sensitivity & specificity
+Precision (PPV)           0.6059     TP / (TP + FP)
+Recall (Sensitivity)      0.8931     TP / (TP + FN)
+Specificity (TNR)         0.8379     TN / (TN + FP)
+F1-Score                  0.7220     Harmonic mean of precision & recall
+NPV                       0.9656     TN / (TN + FN)
+False Positive Rate       0.1621     FP / (FP + TN)
+False Negative Rate       0.1069     FN / (FN + TP)
+ROC-AUC                   0.9526     Area under ROC curve
+PR-AUC                    0.9097     Area under PR curve
+Matthews Corr Coef        0.6464     Correlation coefficient
+Cohen Kappa               0.6243     Agreement correcting for chance
+Gini Coefficient          0.9051     2*AUC - 1
+Log Loss                  0.3217     Logarithmic loss (lower better)
+
+Confusion Matrix:
+                 Predicted
+              No Default  Default
+Actual No      4269        826
+       Yes      152       1270

@@ -1,0 +1,207 @@
+================================================================================
+CATBOOST CREDIT RISK MODELING - ORIGINAL DATASET
+================================================================================
+Run Time: 2025-09-24 16:21:28
+================================================================================
+Loading original dataset...
+Dataset shape: (32581, 12)
+Columns: ['person_age', 'person_income', 'person_home_ownership', 'person_emp_length', 'loan_intent', 'loan_grade', 'loan_amnt', 'loan_int_rate', 'loan_status', 'loan_percent_income', 'cb_person_default_on_file', 'cb_person_cred_hist_length']
+
+Class distribution:
+loan_status
+0    25473
+1     7108
+Name: count, dtype: int64
+Class imbalance ratio: 3.58:1
+
+Missing values:
+person_age                       0
+person_income                    0
+person_home_ownership            0
+person_emp_length              895
+loan_intent                      0
+loan_grade                       0
+loan_amnt                        0
+loan_int_rate                 3116
+loan_status                      0
+loan_percent_income              0
+cb_person_default_on_file        0
+cb_person_cred_hist_length       0
+dtype: int64
+
+Categorical features identified: ['person_home_ownership', 'loan_intent', 'loan_grade', 'cb_person_default_on_file']
+
+Feature matrix shape: (32581, 11)
+Target vector shape: (32581,)
+
+Train set: (26064, 11)
+Test set: (6517, 11)
+Training class distribution: [20378  5686]
+Test class distribution: [5095 1422]
+
+Creating CatBoost data pools...
+✅ Data pools created successfully!
+
+============================================================
+CATBOOST MODEL TRAINING
+============================================================
+Training CatBoost model...
+0:	test: 0.8512279	best: 0.8512279 (0)	total: 187ms	remaining: 3m 7s
+100:	test: 0.9309051	best: 0.9309051 (100)	total: 3.28s	remaining: 29.2s
+200:	test: 0.9439002	best: 0.9439002 (200)	total: 6.71s	remaining: 26.7s
+300:	test: 0.9493266	best: 0.9493389 (299)	total: 10.3s	remaining: 23.9s
+400:	test: 0.9500758	best: 0.9503001 (394)	total: 13.9s	remaining: 20.7s
+500:	test: 0.9509919	best: 0.9510829 (470)	total: 17.4s	remaining: 17.4s
+600:	test: 0.9519037	best: 0.9519984 (596)	total: 21s	remaining: 14s
+700:	test: 0.9522613	best: 0.9523047 (684)	total: 24.6s	remaining: 10.5s
+Stopped by overfitting detector  (50 iterations wait)
+
+bestTest = 0.9525606997
+bestIteration = 746
+
+Shrink model to first 747 iterations.
+✅ CatBoost training completed!
+
+Making predictions...
+
+============================================================
+CATBOOST PERFORMANCE EVALUATION
+============================================================
+CatBoost - Comprehensive Performance Metrics:
+-------------------------------------------------------
+Metric                    Value      Description
+-------------------------------------------------------
+Accuracy                  0.8499     Overall correctness
+Balanced Accuracy         0.8655     Avg of sensitivity & specificity
+Precision (PPV)           0.6059     TP / (TP + FP)
+Recall (Sensitivity)      0.8931     TP / (TP + FN)
+Specificity (TNR)         0.8379     TN / (TN + FP)
+F1-Score                  0.7220     Harmonic mean of precision & recall
+NPV                       0.9656     TN / (TN + FN)
+False Positive Rate       0.1621     FP / (FP + TN)
+False Negative Rate       0.1069     FN / (FN + TP)
+ROC-AUC                   0.9526     Area under ROC curve
+PR-AUC                    0.9097     Area under PR curve
+Matthews Corr Coef        0.6464     Correlation coefficient
+Cohen Kappa               0.6243     Agreement correcting for chance
+Gini Coefficient          0.9051     2*AUC - 1
+Log Loss                  0.3217     Logarithmic loss (lower better)
+
+Confusion Matrix:
+                 Predicted
+              No Default  Default
+Actual No      4269        826
+       Yes      152       1270
+
+==================================================
+FEATURE IMPORTANCE ANALYSIS
+==================================================
+Top 15 Most Important Features:
+---------------------------------------------
+ 1. person_income                       20.5823
+ 2. loan_percent_income                 17.5022
+ 3. person_home_ownership               15.8175
+ 4. loan_intent                         12.7991
+ 5. loan_grade                          11.5253
+ 6. loan_int_rate                       5.7833
+ 7. loan_amnt                           5.6223
+ 8. person_emp_length                   4.3172
+ 9. person_age                          3.5808
+10. cb_person_cred_hist_length          1.6205
+11. cb_person_default_on_file           0.8494
+
+==================================================
+CATBOOST CROSS-VALIDATION RESULTS
+==================================================
+Performing 5-fold cross-validation...
+Training on fold [0/5]
+
+bestTest = 0.9455698963
+bestIteration = 499
+
+Training on fold [1/5]
+
+bestTest = 0.9425252136
+bestIteration = 418
+
+Training on fold [2/5]
+
+bestTest = 0.9497841987
+bestIteration = 483
+
+Training on fold [3/5]
+
+bestTest = 0.9530810903
+bestIteration = 371
+
+Training on fold [4/5]
+
+bestTest = 0.9492177603
+bestIteration = 480
+
+Cross-Validation Results:
+AUC Results:
+  Mean AUC (last 10 iterations): 0.9478
+  Std AUC (last 10 iterations): 0.0000
+  Best AUC: 0.9478
+  Final AUC: 0.9478
+
+Logloss Results:
+  Mean Logloss (last 10 iterations): 0.2690
+  Std Logloss (last 10 iterations): 0.0000
+  Best Logloss: 0.2689
+  Final Logloss: 0.2690
+
+==================================================
+RISK ASSESSMENT ANALYSIS
+==================================================
+Risk Score Distribution:
+Risk Category   Count    Percentage   Actual Default Rate
+------------------------------------------------------------
+Very Low Risk   1866     28.6        % 0.5            %
+Low Risk        1562     24.0        % 3.5            %
+Medium Risk     993      15.2        % 9.0            %
+High Risk       646      9.9         % 16.9           %
+Very High Risk  1450     22.2        % 80.1           %
+
+==================================================
+CATBOOST MODEL INFORMATION
+==================================================
+Model Configuration:
+  - Best iteration: 746
+  - Total iterations: 1000
+  - Learning rate: 0.1
+  - Tree depth: 6
+  - Loss function: Logloss
+  - L2 regularization: 3
+
+CatBoost Advantages:
+  - ✅ Automatic categorical encoding
+  - ✅ Built-in missing value handling
+  - ✅ Class imbalance handling
+  - ✅ No preprocessing required
+
+==================================================
+SAMPLE PREDICTIONS
+==================================================
+Index  Actual   Predicted  Probability  Risk Level
+-------------------------------------------------------
+4548   0        0          0.102        LOW RISK
+5172   0        0          0.155        LOW RISK
+1337   0        0          0.147        LOW RISK
+3471   0        0          0.312        LOW RISK
+5582   1        1          0.996        HIGH RISK
+2050   0        1          0.574        HIGH RISK
+2917   1        1          0.981        HIGH RISK
+4143   0        0          0.000        LOW RISK
+4519   0        0          0.003        LOW RISK
+6037   0        1          0.781        HIGH RISK
+
+🎉 CatBoost Credit Risk Analysis Complete!
+🏆 ROC-AUC: 0.9526
+📈 PR-AUC: 0.9097
+🔄 CV AUC: 0.9478 (±0.0000)
+
+================================================================================
+END OF CATBOOST ANALYSIS
+================================================================================
